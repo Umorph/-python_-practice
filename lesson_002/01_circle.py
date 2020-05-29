@@ -31,7 +31,8 @@ print(point_distance <= radius)
 point_2 = (30, 30)
 # Если точка point_2 лежит внутри круга (radius = 42), то выведите на консоль True,
 # Или False, если точка лежит вовне круга.
-# TODO здесь ваш код
+second_point_distance = (point_2[0] ** 2 + point_2[1] ** 2) ** 0.5
+print(second_point_distance <= radius)
 
 # Пример вывода на консоль:
 #
