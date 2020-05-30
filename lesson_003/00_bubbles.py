@@ -24,7 +24,15 @@ point = sd.get_point(300, 300)
 bubble(point=point, step=10)
 
 # Нарисовать 10 пузырьков в ряд
-# TODO здесь ваш код
+y = 500
+x = 100
+while x < 1001:
+    point = sd.get_point(x, y)
+    radius = 50
+    for _ in range(3):
+        sd.circle(center_position=point, radius=radius, color=[150, 120, 50], width=2)
+        radius += 5
+    x += 100
 
 # Нарисовать три ряда по 10 пузырьков
 # TODO здесь ваш код
