@@ -45,5 +45,6 @@ violator_songs_dict = {
 
 # распечатайте общее время звучания трех песен: 'Sweetest Perfection', 'Policy of Truth' и 'Blue Dress'
 #   А другие три песни звучат ХХХ минут
-
-# TODO здесь ваш код
+second_playlist_len = round(violator_songs_dict.get('Sweetest Perfection') + violator_songs_dict.get('Policy of Truth')
+                            + violator_songs_dict.get('Blue Dress'))
+print('А другие три песни звучат', second_playlist_len, 'минут')
