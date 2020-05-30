@@ -55,4 +55,43 @@ else:
 # brick_x, brick_y, brick_z = 3, 11, 6
 # (просто раскоментировать нужную строку и проверить свой код)
 
-# TODO здесь ваш код
+hole_x, hole_y = 8, 9
+brick_coordinates = {
+    'brick_x': [11, 11, 10, 10, 2, 2, 3, 3, 6, 6, 5, 5, 11, 11, 6, 6, 3, 3],
+    'brick_y': [10, 2, 11, 2, 10, 11, 5, 6, 3, 5, 6, 3, 3, 6, 11, 3, 6, 11],
+    'brick_z': [2, 10, 2, 11, 11, 10, 6, 5, 5, 3, 3, 6, 6, 3, 3, 11, 11, 6]
+}
+
+brick_x = brick_coordinates.get('brick_x')
+brick_y = brick_coordinates.get('brick_y')
+brick_z = brick_coordinates.get('brick_z')
+# Проверяем верность ввенных данных
+if len(brick_x) == len(brick_y) and len(brick_y) == len(brick_z):
+    i = 0
+    while i <= len(brick_x):
+        current_x = brick_x[i]
+        current_y = brick_y[i]
+        current_z = brick_z[i]
+        # Проверяем грань XY
+        print('Brick ', i, 'checking')
+        if current_x <= hole_x and current_y <= hole_y:
+            print('Pass XY x to x')
+        elif current_y <= hole_x and current_x <= hole_y:
+            print('pass XY y to x')
+        else:
+            # Проверяем грань YZ
+            if current_y <= hole_x and current_z <= hole_y:
+                print('Pass YZ y to x')
+            elif current_z <= hole_x and current_y <= hole_y:
+                print('pass YZ z to x')
+            else:
+                # Проверяем по XZ
+                if current_x <= hole_x and current_z <= hole_y:
+                    print('pass XZ x to x')
+                elif current_z <= hole_x and current_x <= hole_y:
+                    print('pass XZ z to x')
+                else:
+                    print('Brick ', i, 'not pass')
+        i += 1
+else:
+    print('Проверьте правильность введенный данных размером кирпичей')
