@@ -18,7 +18,8 @@ all_plants_set = garden_set | meadow_set
 print(all_plants_set)
 
 # выведите на консоль те, которые растут и там и там
-# TODO здесь ваш код
+common_plans_set = garden_set & meadow_set
+print(common_plans_set)
 
 # выведите на консоль те, которые растут в саду, но не растут на лугу
 # TODO здесь ваш код
