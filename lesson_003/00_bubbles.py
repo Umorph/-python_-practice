@@ -35,7 +35,18 @@ while x < 1001:
     x += 100
 
 # Нарисовать три ряда по 10 пузырьков
-# TODO здесь ваш код
+y = 100
+for _ in range(3):
+    x = 100
+    while x < 1001:
+        point = sd.get_point(x, y)
+        radius = 25
+        for _ in range(3):
+            sd.circle(center_position=point, radius=radius, color=[180, 10, 100], width=1)
+            radius += 5
+        x += 100
+    y += 100
+
 
 # Нарисовать 100 пузырьков в произвольных местах экрана случайными цветами
 # TODO здесь ваш код
