@@ -11,4 +11,13 @@
 
 educational_grant, expenses = 10000, 12000
 
-# TODO здесь ваш код
+i = 0
+total_amount_request = 0
+while i < 10:
+    # Считаем сколько не хватает
+    loan_amount = expenses - educational_grant
+    total_amount_request += loan_amount
+    # Теперь считаем рост цен
+    expenses = expenses * 1.03
+    i += 1
+print('Студенту надо попросить', round(total_amount_request), 'рублей')

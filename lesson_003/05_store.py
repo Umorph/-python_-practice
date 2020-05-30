@@ -46,10 +46,15 @@ store = {
 #         подсчет стоимости товара
 #     вывод на консоль количества и стоимости товара на складе
 
-# TODO здесь ваш код
-
-
-
-
-
-
+for item_name in goods:
+    total_product_price = 0
+    total_product_count = 0
+    item_code = goods[item_name]
+    goods_warehouse = store.get(item_code)
+    for product_info in goods_warehouse:
+        product_type_count = product_info.get('quantity')
+        product_type_price = product_info.get('price')
+        total_product_type_price = product_type_count * product_type_price
+        total_product_price += total_product_type_price
+        total_product_count += product_type_count
+    print(item_name, '-', total_product_count, 'Цена -', total_product_price)
