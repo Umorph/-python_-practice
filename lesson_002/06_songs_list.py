@@ -20,7 +20,15 @@ violator_songs_list = [
 # Обратите внимание, что делать много вычислений внутри print() - плохой стиль.
 # Лучше заранее вычислить необходимое, а затем в print(xxx, yyy, zzz)
 
-# TODO здесь ваш код
+print('Первый трек -', violator_songs_list[3][0])
+first_track_len = violator_songs_list[3][1]
+print('Второй трек -', violator_songs_list[5][0])
+second_track_len = violator_songs_list[5][1]
+print('Третий трек -', violator_songs_list[8][0])
+third_track_len = violator_songs_list[8][1]
+
+first_playlist_len = round(first_track_len + second_track_len + third_track_len)
+print('Общее время плейлиста -', first_playlist_len, 'минут')
 
 # Есть словарь песен группы Depeche Mode
 violator_songs_dict = {
@@ -37,5 +45,6 @@ violator_songs_dict = {
 
 # распечатайте общее время звучания трех песен: 'Sweetest Perfection', 'Policy of Truth' и 'Blue Dress'
 #   А другие три песни звучат ХХХ минут
-
-# TODO здесь ваш код
+second_playlist_len = round(violator_songs_dict.get('Sweetest Perfection') + violator_songs_dict.get('Policy of Truth')
+                            + violator_songs_dict.get('Blue Dress'))
+print('А другие три песни звучат', second_playlist_len, 'минут')
