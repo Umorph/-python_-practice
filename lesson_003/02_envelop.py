@@ -68,30 +68,30 @@ brick_z = brick_coordinates.get('brick_z')
 # Проверяем верность ввенных данных
 if len(brick_x) == len(brick_y) and len(brick_y) == len(brick_z):
     i = 0
-    while i <= len(brick_x):
+    while i <= len(brick_x) - 1:
         current_x = brick_x[i]
         current_y = brick_y[i]
         current_z = brick_z[i]
         # Проверяем грань XY
-        print('Brick ', i, 'checking')
+        print('Кирпич №', i + 1, 'Проверяем')
         if current_x <= hole_x and current_y <= hole_y:
-            print('Pass XY x to x')
+            print('Прошел по XY, x к x')
         elif current_y <= hole_x and current_x <= hole_y:
-            print('pass XY y to x')
+            print('Прошел по XY, y к x')
         else:
             # Проверяем грань YZ
             if current_y <= hole_x and current_z <= hole_y:
-                print('Pass YZ y to x')
+                print('Прошел по YZ, y к x')
             elif current_z <= hole_x and current_y <= hole_y:
-                print('pass YZ z to x')
+                print('Прошел по YZ, z к x')
             else:
                 # Проверяем по XZ
                 if current_x <= hole_x and current_z <= hole_y:
-                    print('pass XZ x to x')
+                    print('Прошел по XZ, x к x')
                 elif current_z <= hole_x and current_x <= hole_y:
-                    print('pass XZ z to x')
+                    print('Прошел по XZ, z к x')
                 else:
-                    print('Brick ', i, 'not pass')
+                    print('Не проходит')
         i += 1
 else:
     print('Проверьте правильность введенный данных размером кирпичей')
