@@ -49,6 +49,8 @@ for _ in range(3):
 
 
 # Нарисовать 100 пузырьков в произвольных местах экрана случайными цветами
-# TODO здесь ваш код
+for _ in range(100):
+    point = sd.random_point()
+    bubble(point=point, step=5)
 
 sd.pause()
