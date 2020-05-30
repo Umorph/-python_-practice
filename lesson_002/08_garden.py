@@ -26,6 +26,7 @@ garden_unique_set = garden_set - meadow_set
 print(garden_unique_set)
 
 # выведите на консоль те, которые растут на лугу, но не растут в саду
-# TODO здесь ваш код
+meadow_unique_set = meadow_set - garden_set
+print(meadow_unique_set)
 
 
