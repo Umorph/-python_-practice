@@ -14,7 +14,8 @@ garden_set = set(garden)
 meadow_set = set(meadow)
 
 # выведите на консоль все виды цветов
-# TODO здесь ваш код
+all_plants_set = garden_set | meadow_set
+print(all_plants_set)
 
 # выведите на консоль те, которые растут и там и там
 # TODO здесь ваш код
