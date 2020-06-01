@@ -27,7 +27,41 @@ import simple_draw as sd
 # sd.line()
 # Результат решения см lesson_004/results/exercise_01_shapes.jpg
 
-# TODO здесь ваш код
+
+def triangle_draw(point, angle, length):
+    for _ in range(1, 4):
+        vector = sd.get_vector(start_point=point, angle=angle, length=length, width=1)
+        vector.draw()
+        angle += 120
+        point = vector.end_point
+
+
+def square_draw(point, angle, length):
+    for _ in range(1, 5):
+        vector = sd.get_vector(start_point=point, angle=angle, length=length, width=1)
+        vector.draw()
+        angle += 90
+        point = vector.end_point
+
+
+def pentagon_draw(point, angle, length):
+    for _ in range(1, 6):
+        vector = sd.get_vector(start_point=point, angle=angle, length=length, width=1)
+        vector.draw()
+        angle += 72
+        point = vector.end_point
+
+
+def hexagon_draw(point, angle, length):
+    for _ in range(1, 7):
+        vector = sd.get_vector(start_point=point, angle=angle, length=length, width=1)
+        vector.draw()
+        angle += 60
+        point = vector.end_point
+
+
+start_point = sd.get_point(300, 300)
+hexagon_draw(start_point, 0, 100)
 
 # Часть 1-бис.
 # Попробуйте прикинуть обьем работы, если нужно будет внести изменения в этот код.
