@@ -2,6 +2,8 @@
 
 import simple_draw as sd
 
+sd.resolution = (1600, 900)
+
 # Часть 1.
 # Написать функции рисования равносторонних геометрических фигур:
 # - треугольника
@@ -60,9 +62,6 @@ def hexagon_draw(point, angle, length):
         point = vector.end_point
 
 
-start_point = sd.get_point(300, 300)
-hexagon_draw(start_point, 0, 100)
-
 # Часть 1-бис.
 # Попробуйте прикинуть обьем работы, если нужно будет внести изменения в этот код.
 # Скажем, связывать точки не линиями, а дугами. Или двойными линиями. Или рисовать круги в угловых точках. Или...
@@ -80,6 +79,37 @@ hexagon_draw(start_point, 0, 100)
 #
 # Не забудте в этой общей функции придумать, как устранить разрыв
 #   в начальной/конечной точках рисуемой фигуры (если он есть)
+
+
+def shape_draw(point, angle, side_length, shape):
+    shapes_parameters = {
+        'triangle': {'vertices': 3, 'angle': 120},
+        'square': {'vertices': 4, 'angle': 90},
+        'pentagon': {'vertices': 5, 'angle': 72},
+        'hexagon': {'vertices': 6, 'angle': 60}
+    }
+
+    current_shape = shapes_parameters.get(shape)
+    vertices_count = current_shape.get('vertices')
+    angle_increment = current_shape.get('angle')
+
+    for _ in range(0, vertices_count):
+        current_vector = sd.get_vector(start_point=point, angle=angle, length=side_length, width=1)
+        current_vector.draw()
+        angle += angle_increment
+        point = current_vector.end_point
+
+
+triangle_point = sd.get_point(200, 100)
+square_point = sd.get_point(200, 300)
+pentagon_point = sd.get_point(200, 500)
+hexagon_point = sd.get_point(200, 700)
+
+shape_draw(triangle_point, 0, 100, 'triangle')
+shape_draw(square_point, 0, 100, 'square')
+shape_draw(pentagon_point, 0, 100, 'pentagon')
+shape_draw(hexagon_point, 0, 100, 'hexagon')
+
 
 # Часть 2-бис.
 # А теперь - сколько надо работы что бы внести изменения в код? Выгода на лицо :)
