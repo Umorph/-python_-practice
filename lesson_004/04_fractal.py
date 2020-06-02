@@ -26,7 +26,22 @@ import simple_draw as sd
 
 # можно поиграть -шрифтами- цветами и углами отклонения
 
-# TODO здесь ваш код
+sd.resolution = (1600, 900)
+
+
+def draw_bunches(start_point, angle, length):
+    if length >= 10:
+        first_vector = sd.get_vector(start_point=start_point, angle=angle, length=length)
+        first_vector.draw()
+        start_point = first_vector.end_point
+        draw_bunches(start_point=start_point, angle=angle + 30, length=length * 0.85)
+        draw_bunches(start_point=start_point, angle=angle - 30, length=length * 0.85)
+    else:
+        return
+
+
+root_point = sd.get_point(800, 30)
+draw_bunches(start_point=root_point, angle=90, length=200)
 
 # 4) Усложненное задание (делать по желанию)
 # - сделать рандомное отклонение угла ветвей в пределах 40% от 30-ти градусов
@@ -37,5 +52,3 @@ import simple_draw as sd
 # sd.random_number()
 
 sd.pause()
-
-
