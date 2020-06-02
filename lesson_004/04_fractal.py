@@ -40,8 +40,8 @@ def draw_bunches(start_point, angle, length):
         return
 
 
-root_point = sd.get_point(800, 30)
-draw_bunches(start_point=root_point, angle=90, length=200)
+# root_point = sd.get_point(800, 30)
+# draw_bunches(start_point=root_point, angle=90, length=200)
 
 # 4) Усложненное задание (делать по желанию)
 # - сделать рандомное отклонение угла ветвей в пределах 40% от 30-ти градусов
@@ -50,5 +50,27 @@ draw_bunches(start_point=root_point, angle=90, length=200)
 
 # Пригодятся функции
 # sd.random_number()
+
+def draw_bunches_random(start_point, angle, length):
+    if length >= 20:
+        first_vector = sd.get_vector(start_point=start_point, angle=angle, length=length)
+        first_vector.draw()
+        start_point = first_vector.end_point
+        length_coeff_1 = sd.random_number(90, 95)
+        length_coeff_1 = length_coeff_1 / 100
+        length_coeff_2 = sd.random_number(90, 95)
+        length_coeff_2 = length_coeff_2 / 100
+        draw_bunches_random(start_point=start_point,
+                     angle=angle + sd.random_number(15,35),
+                     length=length * length_coeff_1)
+        draw_bunches_random(start_point=start_point,
+                     angle=angle - sd.random_number(15, 40),
+                     length=length * length_coeff_2)
+    else:
+        return
+
+
+root_point = sd.get_point(800, 30)
+draw_bunches_random(start_point=root_point, angle=90, length=70)
 
 sd.pause()
