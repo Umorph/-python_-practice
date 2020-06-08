@@ -48,7 +48,7 @@ from mastermind_engine import get_a_combination, input_number, check_number, com
 
 number_of_moves = 0
 
-print(get_a_combination())
+get_a_combination()
 while True:
     number_of_moves += 1
     print('Ход №', number_of_moves)
