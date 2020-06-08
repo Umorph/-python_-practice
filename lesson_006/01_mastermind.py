@@ -43,4 +43,26 @@
 # Это пример применения SOLID принципа (см https://goo.gl/GFMoaI) в архитектуре программ.
 # Точнее, в этом случае важен принцип единственной ответственности - https://goo.gl/rYb3hT
 
-# TODO здесь ваш код...
+
+from mastermind_engine import get_a_combination, input_number, check_number, complete_the_game
+
+number_of_moves = 0
+
+print(get_a_combination())
+while True:
+    number_of_moves += 1
+    print('Ход №', number_of_moves)
+    input_number(user_input=input('Введите число: '))
+    result = check_number()
+    print("----------------------------")
+    print('Быков - ', result['bulls'])
+    print('Коров - ', result['cows'])
+    print("----------------------------")
+    if complete_the_game():
+        break
+print(number_of_moves, ' ходов. Хотите еще партию?')
+
+
+
+
+
