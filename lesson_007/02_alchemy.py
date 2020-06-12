@@ -51,6 +51,8 @@ class Air:
             return Lightning().name
         elif other.type == 'earth':
             return Dust().name
+        elif other.type == 'steam':
+            return Cloud().name
         else:
             return 'Такого элемента нет'
 
@@ -114,7 +116,10 @@ class Steam:
         self.type = 'steam'
 
     def __add__(self, other):
-        return 'Такой комбинации нет'
+        if other.type == 'air':
+            return Cloud().name
+        else:
+            return 'Такой комбинации нет'
 
     def __str__(self):
         return self.name
@@ -168,12 +173,25 @@ class Lava:
         return self.name
 
 
+class Cloud:
+    def __init__(self):
+        self.name = 'Облако'
+        self.type = 'cloud'
+
+    def __add__(self, other):
+        return 'Такой кобминации нет'
+
+    def __str__(self):
+        return self.name
+
+
 print(Water(), '+', Air(), '=', Water() + Air())
 print(Water(), '+', Fire(), '=', Water() + Fire())
 print(Water(), '+', Earth(), '=', Water() + Earth())
 print(Air(), '+', Fire(), '=', Air() + Fire())
 print(Air(), '+', Earth(), '=', Air() + Earth())
 print(Fire(), '+', Earth(), '=', Fire() + Earth())
+print(Air(), '+', Steam(), '=', Air() + Steam())
 
 # Усложненное задание (делать по желанию)
 # Добавить еще элемент в игру.
