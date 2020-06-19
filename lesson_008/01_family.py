@@ -48,14 +48,61 @@ class House:
         self.money_count = 100
         self.food_in_fridge = 50
         self.house_mess = 0
+        self.cat_food = 30
 
     def __str__(self):
-        return 'Денег дома - {}, еды в холодильнике - {}, грязи в доме - {}'.format(self.money_count,
-                                                                                    self.food_in_fridge,
-                                                                                    self.house_mess)
+        return f'Денег в доме - {self.money_count}, еды в холодильнике - {self.food_in_fridge}, ' \
+               f'грязи в доме - {self.house_mess}, кошачьей еды - {self.cat_food}'
 
     def get_dirty(self):
         self.house_mess += 5
+
+
+class Cat:
+
+    def __init__(self, name, house):
+        self.house = house
+        self.name = name
+        self.fullness = 30
+
+    def __str__(self):
+        return 'Котейка {}, сытость {}'.format(self.name, self.fullness)
+
+    def eat(self):
+        if self.house.cat_food >= 10:
+            self.fullness += 20
+            self.house.cat_food -= 10
+            print(f'{self.name} ест корм')
+        elif 0 < self.house.cat_food < 10:
+            self.fullness += self.house.cat_food * 2
+            self.house.cat_food -= self.house.cat_food
+            print(f'{self.name} доедает остатки корма')
+        else:
+            self.fullness -= 10
+            print(f'{self.name} сегодня голодает, корма нет')
+
+    def sleep(self):
+        self.fullness -= 10
+        print(f'{self.name} котяшится на кровати')
+
+    def soil(self):
+        self.fullness -= 10
+        self.house.house_mess -= 5
+        print(f'{self.name} дерет обои')
+
+    def act(self):
+        if self.fullness == 0:
+            return f'{self.name} погибает от голода'
+        elif self.fullness <= 20:
+            self.eat()
+        else:
+            dice = randint(1, 6)
+            if dice == 1 or dice == 3:
+                self.eat()
+            elif dice == 2 or dice == 4:
+                self.sleep()
+            else:
+                self.soil()
 
 
 class Human:
@@ -83,7 +130,7 @@ class Human:
             print('{} пропускает прием пищи'.format(self.name))
 
     def act(self):
-        if self.fullness == 0:
+        if self.fullness <= 0:
             print('{} погибает от голода'.format(self.name))
         elif self.happiness < 10:
             print('{} погибает от депрессии'.format(self.name))
@@ -136,10 +183,11 @@ class Wife(Human):
         return super().__str__()
 
     def shopping(self):
-        if self.house.money_count >= 150:
+        if self.house.money_count >= 200:
             self.fullness -= 10
             self.house.food_in_fridge += 150
-            self.house.money_count -= 150
+            self.house.cat_food += 50
+            self.house.money_count -= 200
             print('{} закупает много еды'.format(self.name))
         elif 0 < self.house.money_count < 150:
             self.fullness -= 10
@@ -171,7 +219,7 @@ class Wife(Human):
             self.clean_house()
         elif self.house.money_count >= 350 and self.happiness < 40:
             self.buy_fur_coat()
-        elif self.house.food_in_fridge < 50:
+        elif self.house.food_in_fridge < 50 or self.house.cat_food <= 0:
             self.shopping()
         else:
             dice = randint(1, 6)
@@ -220,16 +268,19 @@ home = House()
 serge = Husband(name='Сережа', house=home)
 masha = Wife(name='Маша', house=home)
 lexus = Child(name='Лексус', house=home)
+eva = Cat(name='Ева', house=home)
 
 for day in range(1, 366):
     cprint('================== День {} =================='.format(day), color='red')
     serge.act()
     masha.act()
     lexus.act()
+    eva.act()
     home.get_dirty()
     cprint(serge, color='cyan')
     cprint(masha, color='cyan')
     cprint(lexus, color='cyan')
+    cprint(eva, color='cyan')
     cprint(home, color='cyan')
 
 # Часть вторая
@@ -255,24 +306,6 @@ for day in range(1, 366):
 # Степень сытости не должна падать ниже 0, иначе кот умрет от голода.
 #
 # Если кот дерет обои, то грязи становится больше на 5 пунктов
-
-
-class Cat:
-
-    def __init__(self):
-        pass
-
-    def act(self):
-        pass
-
-    def eat(self):
-        pass
-
-    def sleep(self):
-        pass
-
-    def soil(self):
-        pass
 
 
 ######################################################## Часть вторая бис
