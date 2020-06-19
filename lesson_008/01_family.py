@@ -269,6 +269,9 @@ serge = Husband(name='Сережа', house=home)
 masha = Wife(name='Маша', house=home)
 lexus = Child(name='Лексус', house=home)
 eva = Cat(name='Ева', house=home)
+motya = Cat(name='Мотя', house=home)
+aloiz = Cat(name='Алойз', house=home)
+murzik = Cat(name='Мурзик', house=home)
 
 for day in range(1, 366):
     cprint('================== День {} =================='.format(day), color='red')
@@ -276,11 +279,17 @@ for day in range(1, 366):
     masha.act()
     lexus.act()
     eva.act()
+    motya.act()
+    aloiz.act()
+    murzik.act()
     home.get_dirty()
     cprint(serge, color='cyan')
     cprint(masha, color='cyan')
     cprint(lexus, color='cyan')
     cprint(eva, color='cyan')
+    cprint(motya, color='cyan')
+    cprint(aloiz, color='cyan')
+    cprint(murzik, color='cyan')
     cprint(home, color='cyan')
 
 # Часть вторая
