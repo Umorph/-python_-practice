@@ -88,7 +88,7 @@ class Human:
         elif self.happiness < 10:
             print('{} погибает от депрессии'.format(self.name))
         else:
-            print('{} начинает свой новый день'.format(self.name))
+            pass
 
 
 class Husband(Human):
@@ -185,17 +185,51 @@ class Wife(Human):
                 self.eat()
 
 
+class Child(Human):
+    def __init__(self, name, house):
+        super().__init__(name=name, house=house)
+
+    def __str__(self):
+        return super().__str__()
+
+    def eat(self):
+        if self.house.food_in_fridge >= 10:
+            self.fullness += 10
+            self.house.food_in_fridge -= 10
+            print('{} ест'.format(self.name))
+        elif 0 < self.house.food_in_fridge < 10:
+            self.fullness += House().food_in_fridge
+            self.house.food_in_fridge -= self.house.food_in_fridge
+            print('{} доедает остатки еды из холодильника'.format(self.name))
+        else:
+            self.fullness -= 10
+            print('{} пропускает прием пищи'.format(self.name))
+
+    def sleep(self):
+        self.fullness -= 10
+        print(f'{self.name} наелся и спит')
+
+    def act(self):
+        if self.fullness <= 30:
+            self.eat()
+        else:
+            self.sleep()
+
+
 home = House()
 serge = Husband(name='Сережа', house=home)
 masha = Wife(name='Маша', house=home)
+lexus = Child(name='Лексус', house=home)
 
 for day in range(1, 366):
     cprint('================== День {} =================='.format(day), color='red')
     serge.act()
     masha.act()
+    lexus.act()
     home.get_dirty()
     cprint(serge, color='cyan')
     cprint(masha, color='cyan')
+    cprint(lexus, color='cyan')
     cprint(home, color='cyan')
 
 # Часть вторая
@@ -251,27 +285,6 @@ class Cat:
 #
 # отличия от взрослых - кушает максимум 10 единиц еды,
 # степень счастья  - не меняется, всегда ==100 ;)
-
-class Child:
-
-    def __init__(self):
-        pass
-
-    def __str__(self):
-        return super().__str__()
-
-    def act(self):
-        pass
-
-    def eat(self):
-        pass
-
-    def sleep(self):
-        pass
-
-
-# TODO после реализации второй части - отдать на проверку учителем две ветки
-
 
 ######################################################## Часть третья
 #
